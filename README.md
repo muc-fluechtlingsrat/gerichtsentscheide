@@ -1,8 +1,7 @@
-Datathon 27.10.2018, Bin und Kai
+Datathon 27.10.2018
 
 Kleine Anfrage der Linken Gerichtsentscheide Asyl
 
-Kai:
 Downloaded pdf file
 Installed tabula
 Used tabula to extract relevant table into csv
@@ -17,7 +16,7 @@ sed -n '/Klagen.*Gerichtsentscheidungen/,/Erst/p' test > test.csv
 (grep cannot specify beginning and end using keywords)
 Same problem with extra columns, even worse.
 
-Bin:
+Easier solution:
 Opened pdf file with acrobat reader and exported as word
 Opened in word and exported as excel
 This works better, but cannot be automatized
