@@ -1,5 +1,34 @@
 # -*- coding: cp1252 -*-
-import fileLib
+
+def explode1(sourceString, searchString):
+    liste = []
+    string1 = ""
+    string2 = ""
+    for i in sourceString:
+        if len(string2) == len(searchString):
+            string1 += string2[0]
+            string2 = string2[1:]
+        string2 += i
+        if string2 == searchString:
+            if string1 != "":
+                liste.append(string1)
+                string1 = ""
+            string2 = ""
+    if string1 != "" or string2 != "":
+        liste.append(string1+string2)
+    return liste
+
+def replace(sourceString, stringToBeCutOut, replacementString):
+    liste = explode1(sourceString, stringToBeCutOut)
+    string = ""
+    for i in liste:
+        string += replacementString + i
+    if sourceString[-len(stringToBeCutOut):] == stringToBeCutOut:
+        string += replacementString
+    return string[len(replacementString):]
+
+def strip(sourceString, stringToBeRemoved):
+    return replace(sourceString, stringToBeRemoved, "")
 
 def explode(sourceString, searchString):
     sourceString = fileLib.strip(sourceString,"\n")
