@@ -31,7 +31,7 @@ def strip(sourceString, stringToBeRemoved):
     return replace(sourceString, stringToBeRemoved, "")
 
 def explode(sourceString, searchString):
-    sourceString = fileLib.strip(sourceString,"\n")
+    sourceString = strip(sourceString,"\n")
     liste = []
     string1 = ""
     string2 = ""
