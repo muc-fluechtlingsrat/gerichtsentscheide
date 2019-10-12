@@ -16,7 +16,12 @@ http://dipbt.bundestag.de/dip21/btd/19/110/1911001.pdf
 First, do the 2018 all year data. Extract the table on page 44. The last rows look broken.
 
 Done manually in tabula, chose Lattice, clean the worst to produce
-2018_klagen.csv, 2018_berufungen.csv, 2018_revisionen.csv
+`2018_klagen.csv, 2018_berufungen.csv, 2018_revisionen.csv`
+
+Remove thousand separating dots.
+When it is csvclean, cut the columns of interest with `csvcut -c 1,4,5,6,7,8,10 2018_klagen.csv`, and produce your chart.
+To identify countries with less than 1000 decisions - those do not go into the percentage picture:
+`csvcut -c1,2 2018_klagen.csv | sort --field-separator=, -k2 -n`	
 
 
 
