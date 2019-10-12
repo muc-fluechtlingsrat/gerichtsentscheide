@@ -48,7 +48,7 @@ def explode(sourceString, searchString):
         liste.append(string1+string2)
     return liste
 
-def read(fileName):
+def csvfile_to_list(fileName):
     liste = []
     f = open(fileName,"r")
     for line in f:
@@ -75,15 +75,15 @@ def read(fileName):
     f.close()
     return liste
 
-liste1 = read("2017_berufungen.csv")
-liste2 = read("2017_klagen.csv")
-liste3 = read("2017_revisionen.csv")
+liste1 = csvfile_to_list("2018_berufungen.csv")
+liste2 = csvfile_to_list("2018_klagen.csv")
+liste3 = csvfile_to_list("2018_revisionen.csv")
 liste = []
-f = open("2017_gesamteZahlen.csv","w")
-f.write("Erst- und Folgeanträge\n")
-f.write(";Berufungen;Gerichtsentscheidungen\n")
-f.write(";;gesamt;Asyl Art.16a GG u. Fam.Asyl;(GFK) Flüchtlingsschutz;Subsidiärer Schutz;Abschiebungsverbot;Ablehnungen")
-f.write(";sonst. Verfahrenserledigungen (z. B. Rücknahmen)\n")
+outputfile = open("2018_gesamteZahlen.csv","w")
+outputfile.write("Erst- und Folgeanträge\n")
+outputfile.write(";Berufungen;Gerichtsentscheidungen\n")
+outputfile.write(";;gesamt;Asyl Art.16a GG u. Fam.Asyl;(GFK) Flüchtlingsschutz;Subsidiärer Schutz;Abschiebungsverbot;Ablehnungen")
+outputfile.write(";sonst. Verfahrenserledigungen (z. B. Rücknahmen)\n")
 for i in liste2:
     liste4 = i
     for j in liste1:
@@ -130,9 +130,9 @@ for i in liste3:
 for i in liste:
     for j in i:
         if type(j) == int:
-            f.write(str(j)+";")
+            outputfile.write(str(j)+";")
             continue
         if j[-2:] != '%"' and  j!= "":
-            f.write(str(j)+";")
-    f.write("\n")
-f.close()
+            outputfile.write(str(j)+";")
+    outputfile.write("\n")
+outputfile.close()
