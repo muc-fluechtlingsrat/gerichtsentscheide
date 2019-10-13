@@ -20,8 +20,16 @@ Done manually in tabula, chose Lattice, clean the worst to produce
 
 Remove thousand separating dots.
 When it is csvclean, cut the columns of interest with `csvcut -c 1,4,5,6,7,8,10 2018_klagen.csv`, and produce your chart.
-To identify countries with less than 1000 decisions - those do not go into the percentage picture:
-`csvcut -c1,2 2018_klagen.csv | sort --field-separator=, -k2 -n`	
+To identify countries with less than 1000 real decisions - those do not go into the percentage picture - we have to subtract the "sonstige Erledigungen" from the total number of decisions. Turning to python pandas for this:
+
+```
+import pandas as pd
+df = pd.read_csv("./2018_klagen.csv")
+print(df.columns.values)
+df_all_dec_nixsonst=df[' Gerichtsentscheidungen gesamt']-df[' sonst. Verfahrenserledigungen (z.B. Ruecknahmen) absolut']
+df.merge(df_all_dec_nixsonst.to_frame(),left_index=True, right_index=True).sort_values(0)
+```
+
 
 
 
